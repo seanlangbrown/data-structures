@@ -2,13 +2,11 @@ var Queue = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
 
-  var someInstance = {
-  	count: 0,
-  	storage: {},
-  	order: [],
-  	pos: 0
-
-  };
+  var someInstance = {};
+  someInstance.count = 0;
+  someInstance.storage = {};
+  someInstance.order = [];
+  someInstance.pos = 0;
 
   _.extend(someInstance, queueMethods);
 
