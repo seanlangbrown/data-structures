@@ -3,7 +3,7 @@ var Queue = function() {
 
   // Use an object with numeric keys to store values
   var storage = {};
-  var last = 0
+  var last = 0;
   var next = 0;
 
   // Implement the methods below
@@ -14,7 +14,7 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    if(last > next) {
+    if (last > next) {
       var result = storage[next];
       delete storage[next]; //memory management
       next++;
