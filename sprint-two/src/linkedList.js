@@ -29,20 +29,22 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    //first input=this.head
     var nodeSearcher = function(node) {
       //check if value = target
       if (node.value === target) {
+        //if true, return true
         return true;
       } else if (!node.next) {
+        //else if nextNode is null, return false
         return false;
       } else { 
+        //else, call self on nextnode
         return nodeSearcher(node.next);
       }
-      //if true, return true
-      //else if nextNode is null, return false
-      //else, call self on nextnode
     };
+
+    //first input=this.head
+    return nodeSearcher(this.head);
     
   };
 
