@@ -1,4 +1,6 @@
-
+//nodes: { node: {neighbors key: true, n:true}, 
+//               {node: neighbors key: true, n:true }
+//       }
 
 // Instantiate a new graph
 var Graph = function() {
@@ -65,9 +67,6 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+RemoveNode and forEachNode are linear
+The rest are all constant
  */
-
-/*var Node = function() {
-  this.value;
-  this.edges = [];
-};*/
