@@ -6,19 +6,7 @@ var BinarySearchTree = function(value) {
 
 };
 
-BinarySearchTree.prototype.checkAndAdd = function(direction, value) {
-  console.log('checkAndAdd');
-  //check if there is a left child
-  if (this[direction] === undefined) {
-    //if no child, append as left child
-    this[direction] = new BinarySearchTree(value);
-    console.log(this[direction].value);
 
-  } else {
-    //call insert on left child
-    this[direction].insert(value);
-  }
-};
 BinarySearchTree.prototype.insert = function(value) {
   var newNode = new BinarySearchTree(value);
   //find a place in the tree to append the new value
@@ -31,12 +19,19 @@ BinarySearchTree.prototype.insert = function(value) {
     //check if there is a left child
     //if no child, append as left child
     //call insert on left child
-    this.checkAndAdd('left', value);
-    console.log(this.left);
+    if (this.left === undefined) {
+      this.left = newNode;
+    } else {
+      this.left.insert(value);
+    }
   } else {
     //if the new value is greater than the current node value, go to the right
     //do same stuff but to the right child
-    this.checkAndAdd('right', value);
+    if (this.right === undefined) {
+      this.right = new BinarySearchTree(value);
+    } else {
+      this.right.insert(value);
+    }
   }
 
 };
