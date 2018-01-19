@@ -62,12 +62,23 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  //delete the storage element at the index
-  //can't access storage array because it is in a closure
-  this._storage.each(function(value, i, storage) {
-    delete storage[index];
-  });
-  //this.length--;
+
+  //get the bucket
+  var bucket = this._storage.get(index);
+  //find the tuple
+  //remove the tuple
+  if (bucket === undefined) {
+    return undefined;
+  } else {
+    //else iterate through tuples in bucket to find key and delete
+    for (var i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === k) {
+        bucket.splice(i, 1);
+        break;
+      }
+    }
+  }
+
 };
 
 //create new prototype function that doubles _limit when the storage size = _limit
