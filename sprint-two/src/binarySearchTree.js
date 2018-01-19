@@ -64,8 +64,19 @@ BinarySearchTree.prototype.contains = function(value) {
   return false;
 };
 
-BinarySearchTree.prototype.depthFirstLog = function() {
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+  //search through all nodes (left child first) and pass value into the callback function
+  //call the callback, pass in value
+  cb(this.value);
 
+  //call depthFirstLog on left child
+  if (this.left !== undefined) {
+    this.left.depthFirstLog(cb);
+  }
+  //call depthFirstLog on right child
+  if (this.right !== undefined) {
+    this.right.depthFirstLog(cb);
+  }
 };
 
 
