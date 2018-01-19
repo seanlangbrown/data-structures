@@ -7,19 +7,8 @@ var HashTable = function() {
   //this.length = 0;
 };
 
-//To prevent changes in the function from changes higher up in the prototype chain
-HashTable.prototype.getIndexBelowMaxForKey = function(str, max) {
-  var hash = 0;
-  for (var i = 0; i < str.length; i++) {
-    hash = (hash << 5) + hash + str.charCodeAt(i);
-    hash = hash & hash; // Convert to 32bit integer
-    hash = Math.abs(hash);
-  }
-  return hash % max;
-};
-
 HashTable.prototype.insert = function(k, v) {
-  var index = this.getIndexBelowMaxForKey(k, this._limit);
+  var index = getIndexBelowMaxForKey(k, this._limit);
 
   //get what is in existing storage at index
   //put key value into a tuple array
@@ -53,7 +42,7 @@ HashTable.prototype.insert = function(k, v) {
 };
 
 HashTable.prototype.retrieve = function(k) {
-  var index = this.getIndexBelowMaxForKey(k, this._limit);
+  var index = getIndexBelowMaxForKey(k, this._limit);
 
   //get bucket at index
   var bucket = this._storage.get(index);
@@ -72,7 +61,7 @@ HashTable.prototype.retrieve = function(k) {
 };
 
 HashTable.prototype.remove = function(k) {
-  var index = this.getIndexBelowMaxForKey(k, this._limit);
+  var index = getIndexBelowMaxForKey(k, this._limit);
   //delete the storage element at the index
   //can't access storage array because it is in a closure
   this._storage.each(function(value, i, storage) {
