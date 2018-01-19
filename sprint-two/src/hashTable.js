@@ -31,25 +31,44 @@ HashTable.prototype.insert = function(k, v) {
     bucket = [tuple];
   } else {
     //push tuple array to end of existing bucket array
-    bucket.push(tuple);
+    //check if key already exists in bucket and return index
+    var foundIndex = 0;
+    for (var i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === k) {
+        break;
+      }
+      foundIndex++;
+    }
+    bucket[foundIndex] = tuple;
   }
   //set bucket array into storage[index]
   this._storage.set(index, bucket);
-
-
 
   //and use set function and pass in index and v
   //this._storage.set(index, v);
   //this.length++;
   //this.increaseLimit();
 
-
   //check if need to increase limit
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = this.getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index);
+
+  //get bucket at index
+  var bucket = this._storage.get(index);
+  //if undefined, return undefined
+  if (bucket === undefined) {
+    return undefined;
+  } else {
+    //else iterate throught tuples in bucket to find key and return value
+    for (var i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === k) {
+        return bucket[i][1];
+      }
+    }
+  }
+
 };
 
 HashTable.prototype.remove = function(k) {
