@@ -19,13 +19,32 @@ HashTable.prototype.getIndexBelowMaxForKey = function(str, max) {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  //check if need to increase limit
   var index = this.getIndexBelowMaxForKey(k, this._limit);
-  //get storage and use set function and pass in index and v
-  this._storage.set(index, v);
+
+  //get what is in existing storage at index
+  //put key value into a tuple array
+  var bucket = this._storage.get(index);
+  var tuple = [k, v];
+  //if storage[index] = undefined
+  if (bucket === undefined) {
+    //put tuple array into bucket array
+    bucket = [tuple];
+  } else {
+    //push tuple array to end of existing bucket array
+    bucket.push(tuple);
+  }
+  //set bucket array into storage[index]
+  this._storage.set(index, bucket);
+
+
+
+  //and use set function and pass in index and v
+  //this._storage.set(index, v);
   //this.length++;
   //this.increaseLimit();
 
+
+  //check if need to increase limit
 };
 
 HashTable.prototype.retrieve = function(k) {
