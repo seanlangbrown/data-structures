@@ -6,6 +6,9 @@ var Tree = function(value) {
   // your code here
   newTree.children = [];
 
+  //add parent property
+  newTree.parent;
+
   return newTree;
 };
 
@@ -13,7 +16,9 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   //create a new tree with value and push to the array of children
-  this.children.push(Tree(value));
+  var newNode = Tree(value);
+  newNode.parent = this;
+  this.children.push(newNode);
 };
 
 treeMethods.contains = function(target) {
