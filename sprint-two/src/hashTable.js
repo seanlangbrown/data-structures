@@ -10,6 +10,8 @@ var HashTable = function() {
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
 
+  //call changeSize function
+
   //get what is in existing storage at index
   //put key value into a tuple array
   var bucket = this._storage.get(index);
@@ -32,13 +34,8 @@ HashTable.prototype.insert = function(k, v) {
   }
   //set bucket array into storage[index]
   this._storage.set(index, bucket);
-
-  //and use set function and pass in index and v
-  //this._storage.set(index, v);
   //this.length++;
-  //this.increaseLimit();
 
-  //check if need to increase limit
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -47,9 +44,7 @@ HashTable.prototype.retrieve = function(k) {
   //get bucket at index
   var bucket = this._storage.get(index);
   //if undefined, return undefined
-  if (bucket === undefined) {
-    return undefined;
-  } else {
+  if (bucket !== undefined) {
     //else iterate throught tuples in bucket to find key and return value
     for (var i = 0; i < bucket.length; i++) {
       if (bucket[i][0] === k) {
@@ -64,31 +59,30 @@ HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
 
   //get the bucket
-  var bucket = this._storage.get(index);
-  //find the tuple
-  //remove the tuple
-  if (bucket === undefined) {
-    return undefined;
-  } else {
-    //else iterate through tuples in bucket to find key and delete
-    for (var i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] === k) {
-        bucket.splice(i, 1);
-        break;
-      }
+  var bucket = this._storage.get(index) || [];
+  //iterate through tuples in bucket to find key and delete
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] === k) {
+      bucket.splice(i, 1);
+      //this.length--;
+      break;
     }
   }
 
 };
 
-//create new prototype function that doubles _limit when the storage size = _limit
-// HashTable.prototype.increaseLimit = function() {
-//   console.log(this.length);
-//   if (this.length === this._limit-1) {
-//     console.log(this.length);
-//     this._limit = this._limit * 2;
-//   }
-// };
+
+//changeSize function
+//check the size for the ratio 25%-75%
+//if the size is ok, return
+//else pick a new size (check if need to double/half)
+//create a new LimitedList with new limit
+//copy contents of storage to the new LL
+//iterate through original list
+//iterate through each bucket to get all tuples
+//call newList.insert on each tuple from old list
+//point this.storage to newList
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
