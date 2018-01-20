@@ -103,11 +103,13 @@ BinarySearchTree.prototype.breadthFirstLog = function(cb, nodes) {
   }
 
   //call recursively on array of all children
-  if (nextNodes.length){
+  if (nextNodes.length) {
     this.breadthFirstLog(cb, nextNodes);
   }
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
+   insert and contains are log linear (log(n))
+   depthFirstLog and breadthFirstLog are linear
  */

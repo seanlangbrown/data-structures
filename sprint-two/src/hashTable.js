@@ -86,6 +86,9 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+   insert - "Almost constant" - linear as a functon of the number of keys that have mapped to the same index
+   retrieve - "Almost constant" - linear as a functon of the number of keys that have mapped to the same index
+   remove - "Almost constant" - linear as a functon of the number of keys that have mapped to the same index
  */
 
 

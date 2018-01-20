@@ -62,5 +62,5 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
-   The complexity of removeHead and addToTail is constant.  The time complexity of contains is linear.
+   The time complexities of removeHead and addToTail are constant.  The time complexity of contains is linear.
  */
