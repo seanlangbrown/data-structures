@@ -1,6 +1,6 @@
 var Tree = function(value) {
   var newTree = Object.create(treeMethods);//{};
-  newTree.value = value;
+  newTree.value = value || null;
   //_.extend(newTree, treeMethods);
 
   // your code here
@@ -26,7 +26,7 @@ treeMethods.contains = function(target) {
   //if this nodes value is the target, return true
   if (this.value === target) {
     return true;
-  } else if (!this.children.length) {
+  } else if (this.children.length === 0) {
     //if this node has no children
     return false;
   } else {
@@ -59,6 +59,16 @@ treeMethods.removeFromParent = function() {
   this.parent = null;
 
   return this;
+};
+
+treeMethods.traverse = function(callback) {
+//visits every node in the tree and applies callback
+
+//callback on current node
+//if children exist
+  //Recursive case: iterate over children and call traverse on them
+//base case: if no children, exit
+
 };
 
 /*
