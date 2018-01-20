@@ -7,7 +7,7 @@ var Tree = function(value) {
   newTree.children = [];
 
   //add parent property
-  newTree.parent;
+  newTree.parent = null;
 
   return newTree;
 };
@@ -42,7 +42,24 @@ treeMethods.contains = function(target) {
 
 };
 
+treeMethods.removeFromParent = function() {
+//remove child reference to this node from parent
+  var siblings = this.parent.children; //an Array
+  var i = 0;
+  var notFound = true;
+  while (notFound && i < siblings.length) {
+    if (siblings[i] === this) {
+      notfound = false;
+    }
+    i++;
+  }
+  siblings.splice(i - 1, 1);
 
+  //set .parent to null
+  this.parent = null;
+
+  return this;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
