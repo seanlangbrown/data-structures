@@ -65,7 +65,7 @@ treeMethods.traverse = function(callback) {
 //visits every node in the tree and applies callback
 
 //callback on current node
-  callback.call(this, this.value, this.children, this.parent);
+  callback.call(this, this.value);
   //if children exist
   if (this.children.length !== 0) {
   //Recursive case: iterate over children and call traverse on them
