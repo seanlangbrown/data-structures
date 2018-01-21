@@ -1,21 +1,23 @@
-var BinarySearchTree = function(value) {
+var BinarySearchTree = function(value) { //to implement depth, add parameter depth
  
   this.left = null;
   this.right = null;
   this.value = value;
-
+  /*To implement balancing:
+  //depth property = depth || 0;
+  //node index - increments each time a node is instantiated
+  */
 };
 
 
 BinarySearchTree.prototype.insert = function(value) {
-  var newNode = new BinarySearchTree(value);
+  var newNode = new BinarySearchTree(value); //add argument for depth , this.depth + 1
   //find a place in the tree to append the new value
-
-  //helper function
 
 
   if (value < this.value) {
     //if the new value is less than the current node value, go to the left
+
     //check if there is a left child
     //if no child, append as left child
     //call insert on left child
@@ -33,7 +35,9 @@ BinarySearchTree.prototype.insert = function(value) {
       this.right.insert(value);
     }
   }
-
+  /*to implement balancing:
+  //check if tree is balanced, if not, balance it
+  */
 };
 
 BinarySearchTree.prototype.contains = function(value) {
@@ -106,6 +110,29 @@ BinarySearchTree.prototype.breadthFirstLog = function(cb, nodes) {
   if (nextNodes.length) {
     this.breadthFirstLog(cb, nextNodes);
   }
+};
+
+BinarySearchTree.prototype.isBalanced = function() {
+  /*
+    //check if tree is balance by comparing min and max depth
+      //calculate min depth from # of nodes
+      //calcualte max depth from current node
+    
+    //if max depth is more than 2x min depth
+    //return false
+  */
+};
+
+BinarySearchTree.prototype.rebalance = function() {
+  /*
+    //rebalance tree:
+      //traverse through tree to get sorted array of nodes
+      //create new balanced tree
+        //get the middle node, split remaining elements into left array and right array
+        //add middle element to tree
+        //^repeat on both left and right array until all elements are added
+      //point old reference to tree to the new tree
+  */
 };
 
 /*
