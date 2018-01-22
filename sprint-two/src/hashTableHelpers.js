@@ -56,4 +56,9 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+   .get and .set are constant
+   .each is linear
+   .checklimit is constant
+   getIndexBelowMaxForKey is considered constant. It is linear as a function of the length of the 
+     key string, but it's run time is not affected by the length of the hashTable.
  */
